@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Implementasi Bubble Sort</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .hasil {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Bubble Sort</h2>
+    <input type="text" id="inputArray" placeholder="Contoh: 5,3,8,1,2">
+    <button onclick="urutkan()">Urutkan</button>
+    <div class="hasil" id="output"></div>
+</div>
+
+<script>
+    function bubbleSort(arr) {
+        let n = arr.length;
+
+        for (let i = 0; i < n - 1; i++) {
+            for (let j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Tukar posisi
+                    let temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+
+    function urutkan() {
+        let input = document.getElementById("inputArray").value;
+        let array = input.split(",").map(Number);
+
+        if (array.some(isNaN)) {
+            document.getElementById("output").innerText = "Masukkan angka yang valid!";
+            return;
+        }
+
+        let hasil = bubbleSort(array);
+
+        document.getElementById("output").innerText =
+            "Hasil: " + hasil.join(", ");
+    }
+</script>
+
+</body>
+</html>
